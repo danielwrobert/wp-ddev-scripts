@@ -1,0 +1,76 @@
+# ignore OS generated files
+*~
+.DS_*
+ehthumbs.db
+Thumbs.db
+.svn/
+.cvs/
+.hg/
+*.bak
+*.swp
+
+# ignore Editor files
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.idea
+.vscode
+
+# node
+/node_modules
+.env.local
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# wp core (as of 4.9.5)
+composer.json
+db-config.php
+index.php
+license.txt
+readme.html
+wp-activate.php
+wp-app.php
+wp-atom.php
+wp-blog-header.php
+wp-comments-post.php
+wp-commentsrss2.php
+wp-config-local.php
+wp-config-sample.php
+wp-config-local.php
+wp-cron.php
+wp-feed.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+composer.lock
+wp-mail.php
+wp-rdf.php
+wp-rss.php
+wp-rss2.php
+wp-pass.php
+wp-register.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
+wp-admin
+wp-includes
+wp-content/index.php
+
+# ignore everything in the "wp-content" directory
+# unless explicitly allowed at the end of this file
+web/wp-content/plugins/*
+web/wp-content/themes/*
+# web/wp-content/mu-plugins/*
+web/wp-content/cache
+wp-content/uploads
+
+# Custom plugins/themes need to be explicitly excluded from being ignored so they can be committed.
+# themes
+!web/wp-content/themes/mirkwood/
+
+# AMCA blocks plugin
+!web/wp-content/plugins/mirkwood-blocks/

@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+## Description: Run @wordpress/scripts in development mode for the plugin
+## Usage: blocks-watch
+## Example: "ddev blocks-watch"
+## Aliases: development,blocks:watch,blw,blocks-development
+
+# Get plugin configuration from environment variables
+WP_PLUGIN_RELATIVE_PATH=$(printenv PLUGIN 2>/dev/null || echo "wp-content/plugins/mirkwood-blocks")
+DOCROOT=$(printenv DOCROOT 2>/dev/null || echo "web")
+PLUGIN_PATH="/var/www/html/${DOCROOT}/${WP_PLUGIN_RELATIVE_PATH}"
+
+# Check if plugin directory exists
+if [ ! -d "$PLUGIN_PATH" ]; then
+    echo "Plugin directory not found: $PLUGIN_PATH"
+    echo "Please ensure your plugin is located at the correct path or update PLUGIN environment variable in .ddev/config.yaml"
+    exit 1
+fi
+
+# Check if package.json exists
+if [ ! -f "$PLUGIN_PATH/package.json" ]; then
+    echo "package.json not found in plugin directory: $PLUGIN_PATH"
+    echo "Please ensure your plugin has a package.json file with npm scripts configured"
+    exit 1
+fi
+
+echo "Starting development server for plugin at: $PLUGIN_PATH"
+cd "$PLUGIN_PATH"
+
+# Install dependencies if node_modules doesn't exist
+if [ ! -d "node_modules" ]; then
+    echo "Installing npm dependencies..."
+    npm install
+fi
+
+# Start the development server
+npm run start

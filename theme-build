@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+## Description: Build production assets for the theme
+## Usage: theme-build
+## Example: "ddev theme-build"
+## Aliases: production,theme:build,thb,theme-production
+
+# Get theme configuration from environment variables
+WP_THEME_RELATIVE_PATH=$(printenv THEME 2>/dev/null || echo "wp-content/themes/mirkwood")
+DOCROOT=$(printenv DOCROOT 2>/dev/null || echo "web")
+THEME_PATH="/var/www/html/${DOCROOT}/${WP_THEME_RELATIVE_PATH}"
+
+# Check if theme directory exists
+if [ ! -d "$THEME_PATH" ]; then
+    echo "Theme directory not found: $THEME_PATH"
+    echo "Please ensure your theme is located at the correct path or update THEME environment variable in .ddev/config.yaml"
+    exit 1
+fi
+
+# Check if package.json exists
+if [ ! -f "$THEME_PATH/package.json" ]; then
+    echo "package.json not found in theme directory: $THEME_PATH"
+    echo "Please ensure your theme has a package.json file with npm scripts configured"
+    exit 1
+fi
+
+echo "Building production assets for theme at: $THEME_PATH"
+cd "$THEME_PATH"
+
+# Install dependencies if node_modules doesn't exist
+if [ ! -d "node_modules" ]; then
+    echo "Installing npm dependencies..."
+    npm install
+fi
+
+# Build production assets
+npm run build
+
+echo "Production build completed successfully!"
