@@ -62,10 +62,10 @@ wp-content/index.php
 
 # ignore everything in the "wp-content" directory
 # unless explicitly allowed at the end of this file
-web/wp-content/plugins/*
-web/wp-content/themes/*
+wp-content/plugins/*
+wp-content/themes/*
 # web/wp-content/mu-plugins/*
-web/wp-content/cache
+wp-content/cache
 wp-content/uploads
 
 # Custom plugins/themes need to be explicitly excluded from being ignored so they can be committed.
