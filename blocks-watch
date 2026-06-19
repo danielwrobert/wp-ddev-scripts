@@ -3,7 +3,7 @@
 ## Description: Run @wordpress/scripts in development mode for the plugin
 ## Usage: blocks-watch
 ## Example: "ddev blocks-watch"
-## Aliases: development,blocks:watch,blw,blocks-development
+## Aliases: blocks-dev,blocks:watch,blw,blocks-development
 
 # Get plugin configuration from environment variables
 WP_PLUGIN_RELATIVE_PATH=$(printenv PLUGIN 2>/dev/null || echo "wp-content/plugins/mirkwood-blocks")
